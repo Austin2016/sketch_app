@@ -1,15 +1,6 @@
+	
 
-#table {
-
-	border-collapse: collapse;
-	border-spacing: 0; 
-	width: 500px;
-	height: 500px;
-	margin-right: auto;
-    margin-left:auto;
-}	
-
-#clickMe { /* this styling was taken from a button generator*/
+.s { /* this styling was taken from a button generator*/
     
   background: #3498db;
   background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
@@ -26,47 +17,53 @@
   padding: 10px 20px 10px 20px;
   text-decoration: none;
 
-  
-   
+  }
 
 
 
-
-  
-
-
-}
-
-#hack { 
+#buttonDiv { 
 padding: 50px;
 
 
 }
 
-#squares2 { 
+#squares2 {      /*these are my square divs*/
 
 	height: 100%;
 	width: 100%;
 	/*border: 1px solid black;*/
 	/*background-color: blue;*/
+  border-style: none;
+  border: none;
 
 
 
 }
 
-#container { 
-  
-
-}
 
 #cells  { 
     
-    
-	border: 1px solid black;
-	padding: 0;
-	
-  
+    padding: 0; 
+    border-style: none;
+    border: none;
+
+
 }
 
+#table {
+
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 500px;
+  height: 500px;
+  margin-right: auto;
+  margin-left:auto;
+  border: 1px solid black;
+
+  
+
+
+
+}
     
 

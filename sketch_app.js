@@ -1,35 +1,18 @@
-
-// First section creates 256 div grid, ID's it, and puts a number in it.
-
-/*var myDivs; 
-
- for (var i = 0; i<256; i++) {
-
-myDivs = document.createElement('div');
-
-myDivs.id = "squares";
-
-myDivs.innerHTML = i+1;
-
-document.body.appendChild(myDivs);
-}*/
-
-// next section 
-
 $(window).bind("load",function() {
 
-var resolutionDefault = 16;
-
+var resolution = 16;
+var state ="random";
+var state2=1; // can be black or random  
 
 	function buildDefault () { 
 		var tbl = document.createElement("table");
 		tbl.id="table";
 
 
-		for (var i = 0; i<resolutionDefault; i++) {
+		for (var i = 0; i<resolution; i++) {
 
 			var r=tbl.insertRow(i);
-			for ( var j = 0; j<resolutionDefault; j++)  {
+			for ( var j = 0; j<resolution; j++)  {
 				var c=r.insertCell(j);
 				c.id = "cells";
 
@@ -42,25 +25,44 @@ var resolutionDefault = 16;
 		$('#container').append(tbl); // puts the input variable into the selector 
 
 		 
-		$("div #squares2").mouseenter(function() { 
-			// $(this).css("background-color",'rgba(0,0,0,.1'); // jquery sets alpha but not the same as opacity 
-			
-			this.style.backgroundColor = "black";  // changes opacity by .1
-			if ( this.style.opacity == "") { 
-				this.style.opacity = .1; 
-			}
-
-			else if (this.style.opacity<1){ 
-				x=this.style.opacity;
-				y=parseFloat(x);
-				y+=.1; 
-				this.style.opacity=y;
-			}
+		$('div #squares2').mouseenter(function() { 
+		
 						 
-            //var number=Math.floor(Math.random()*16777215); /// random colors
-			//var hexString = number.toString(16);
-			//hexString = hexString.replace('','#');
-			//$(this).css("background-color",hexString});
+            if (state == "random") { 
+
+         		this.style.backgroundColor = getRandomColor();
+
+         		
+
+         	}
+	            
+	        else { 
+
+	        	this.style.backgroundColor = state;
+
+	        	
+	        }
+
+
+            if (state2==1)  {
+	            if ( this.style.opacity == "") { 
+					this.style.opacity = .1; 
+			    }
+
+			    else if (this.style.opacity<1){ 
+					x=this.style.opacity;
+					y=parseFloat(x);    // converts x from string to double
+					y+=.1; 
+					this.style.opacity=y;
+			    } 
+			}    
+	        
+	        else {
+
+	        		this.style.opacity=1;
+
+	        }	
+
 
 
         });
@@ -77,12 +79,12 @@ var resolutionDefault = 16;
 			
 
 
-			var lastRes = resolutionDefault;
-    		resolutionDefault=prompt( "Increase resolution with a higher number of squares");
+			var lastRes = resolution;
+    		resolution=prompt( "Increase resolution with a higher number of squares");
 			
 																		
 			
-			if(resolutionDefault !== null) {
+			if(resolution !== null) {
 				$('#container').empty();
 				buildDefault();
 
@@ -97,8 +99,58 @@ var resolutionDefault = 16;
         
 buildDefault();
 
+//Events and Functions 
+
+
+
+            document.getElementById("clickMe2").onclick = function() { 
+
+            	state="black";
+
+
+
+            }
+
+            document.getElementById("clickMe3").onclick = function() { 
+
+            	state="random";
+
+
+
+            }
+
+            document.getElementById("clickMe4").onclick = function() { 
+
+
+ 				if (document.getElementById("clickMe4").value=="shading on") {
+            		document.getElementById("clickMe4").value ="shading off";
+            		}
+            	else {
+            		document.getElementById("clickMe4").value="shading on";
+            	}
+
+            	if (state2==1) { 
+            		state2=0;  
+            	} 
+            	else {
+            		state2=1;
+            	}
+
+
+
+
+            }
+             
+			function getRandomColor () { 
+            	var number=Math.floor(Math.random()*16777215); /// random colors
+				var hexString = number.toString(16);
+				hexString = hexString.replace('','#');
+				return hexString; 
+			}
+
+
 });  //wrapper function to .js from loading initilally 
 
-
+	
 
   
